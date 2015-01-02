@@ -1,0 +1,7 @@
+CREATE EXTENSION hello_ext;
+SELECT hello_world();
+  hello_world  
+---------------
+ Hello, world!
+(1 row)
+

@@ -1,0 +1,5 @@
+# hello_ext extension
+comment = 'example extenstion for PostgreSQL!'
+default_version = '1.0'
+module_pathname = '$libdir/hello_ext'
+relocatable = true
