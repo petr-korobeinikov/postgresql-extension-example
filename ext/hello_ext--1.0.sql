@@ -10,3 +10,8 @@ CREATE FUNCTION greet(text)
     RETURNS text
     AS 'MODULE_PATHNAME'
     LANGUAGE C;
+
+CREATE FUNCTION hello_ereport()
+    RETURNS void
+    AS 'MODULE_PATHNAME'
+    LANGUAGE C;

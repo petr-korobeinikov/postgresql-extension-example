@@ -2,7 +2,7 @@ CREATE EXTENSION hello_ext;
 SELECT hello_world();
   hello_world  
 ---------------
- Hello, world!
+ Hello, World!
 (1 row)
 
 SELECT greet('World');
@@ -11,3 +11,5 @@ SELECT greet('World');
  Hello, World!
 (1 row)
 
+SELECT hello_ereport();
+ERROR:  null value not allowed

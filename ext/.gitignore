@@ -6,3 +6,5 @@
 # Compiler output
 *.o
 *.so
+.deps/
+

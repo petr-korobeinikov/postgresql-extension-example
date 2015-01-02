@@ -18,6 +18,7 @@ PG_MODULE_MAGIC;
 
 PG_FUNCTION_INFO_V1(hello_world);
 PG_FUNCTION_INFO_V1(greet);
+PG_FUNCTION_INFO_V1(hello_ereport);
 
 Datum
 hello_world(PG_FUNCTION_ARGS)
@@ -47,4 +48,12 @@ greet(PG_FUNCTION_ARGS)
 	memcpy(VARDATA(out) + hello_sz + name_sz, VARDATA(tail), tail_sz);
 
 	PG_RETURN_TEXT_P(out);
+}
+
+Datum
+hello_ereport(PG_FUNCTION_ARGS)
+{
+	ereport(ERROR,
+			(errcode(ERRCODE_NULL_VALUE_NOT_ALLOWED),
+			errmsg("null value not allowed")));
 }
