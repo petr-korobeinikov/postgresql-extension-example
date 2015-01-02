@@ -6,7 +6,7 @@ CREATE FUNCTION hello_world()
     AS 'MODULE_PATHNAME'
     LANGUAGE C;
 
-CREATE FUNCTION greet(text)
+CREATE FUNCTION hello_text_arg(text)
     RETURNS text
     AS 'MODULE_PATHNAME'
     LANGUAGE C;

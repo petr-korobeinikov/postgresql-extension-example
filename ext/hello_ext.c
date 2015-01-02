@@ -17,7 +17,7 @@
 PG_MODULE_MAGIC;
 
 PG_FUNCTION_INFO_V1(hello_world);
-PG_FUNCTION_INFO_V1(greet);
+PG_FUNCTION_INFO_V1(hello_text_arg);
 PG_FUNCTION_INFO_V1(hello_ereport);
 
 Datum
@@ -27,7 +27,7 @@ hello_world(PG_FUNCTION_ARGS)
 }
 
 Datum
-greet(PG_FUNCTION_ARGS)
+hello_text_arg(PG_FUNCTION_ARGS)
 {
 	text *hello		= cstring_to_text("Hello, ");
 	int32 hello_sz	= VARSIZE(hello) - VARHDRSZ;
