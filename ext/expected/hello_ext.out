@@ -5,3 +5,9 @@ SELECT hello_world();
  Hello, world!
 (1 row)
 
+SELECT greet('World');
+     greet     
+---------------
+ Hello, World!
+(1 row)
+

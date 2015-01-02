@@ -22,24 +22,29 @@ PG_FUNCTION_INFO_V1(greet);
 Datum
 hello_world(PG_FUNCTION_ARGS)
 {
-	PG_RETURN_TEXT_P(cstring_to_text("Hello, world!"));
+	PG_RETURN_TEXT_P(cstring_to_text("Hello, World!"));
 }
 
 Datum
 greet(PG_FUNCTION_ARGS)
 {
+	text *hello		= cstring_to_text("Hello, ");
+	int32 hello_sz	= VARSIZE(hello) - VARHDRSZ;
 
-	text *hello	= cstring_to_text("hello, ");
-	text *name	= PG_GETARG_TEXT_P(0);
+	text *name		= PG_GETARG_TEXT_P(0);
+	int32 name_sz	= VARSIZE(name) - VARHDRSZ;
 
-	int32 hello_name_sz = VARSIZE(hello) + VARSIZE(name) - VARHDRSZ;
-	text *hello_name = (text *) palloc(hello_name_sz);
+	text *tail		= cstring_to_text("!");
+	int32 tail_sz	= VARSIZE(tail) - VARHDRSZ;
 
-	SET_VARSIZE(hello_name, hello_name_sz);
-	memcpy(VARDATA(hello_name), VARDATA(hello), VARSIZE(hello) - VARHDRSZ);
-	memcpy(VARDATA(hello_name) + (VARSIZE(hello) - VARHDRSZ),
-		   VARDATA(name),
-		   VARSIZE(name) - VARHDRSZ);
+	int32 out_sz	= hello_sz + name_sz + tail_sz + VARHDRSZ;
+	text *out		= (text *) palloc(out_sz);
 
-	PG_RETURN_TEXT_P(hello_name);
+	SET_VARSIZE(out, out_sz);
+
+	memcpy(VARDATA(out), VARDATA(hello), hello_sz);
+	memcpy(VARDATA(out) + hello_sz, VARDATA(name), name_sz);
+	memcpy(VARDATA(out) + hello_sz + name_sz, VARDATA(tail), tail_sz);
+
+	PG_RETURN_TEXT_P(out);
 }
