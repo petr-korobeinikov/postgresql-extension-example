@@ -3,3 +3,6 @@
 /regression.out
 /results/
 
+# gdb out
+*.o
+*.so
