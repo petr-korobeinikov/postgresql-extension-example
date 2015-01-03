@@ -56,4 +56,6 @@ hello_ereport(PG_FUNCTION_ARGS)
 	ereport(ERROR,
 			(errcode(ERRCODE_NULL_VALUE_NOT_ALLOWED),
 			errmsg("null value not allowed")));
+
+	PG_RETURN_VOID();
 }
