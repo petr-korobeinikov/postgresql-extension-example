@@ -27,3 +27,9 @@ http://www.postgresql.org/docs/devel/static/extend-pgxs.html
 ### control- и sql-файлы установки [и обновления] расширения
 
 http://www.postgresql.org/docs/devel/static/extend-extensions.html
+
+## Другие примеры
+
+* https://bitbucket.org/adunstan/blackhole_fdw
+* https://github.com/michaelpq/pg_plugins
+    * http://michael.otacoo.com/postgresql-2/blackhole-extension/
