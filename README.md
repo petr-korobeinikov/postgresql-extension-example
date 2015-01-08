@@ -33,3 +33,4 @@ http://www.postgresql.org/docs/devel/static/extend-extensions.html
 * https://bitbucket.org/adunstan/blackhole_fdw
 * https://github.com/michaelpq/pg_plugins
     * http://michael.otacoo.com/postgresql-2/blackhole-extension/
+    * http://michael.otacoo.com/postgresql-2/postgres-9-3-feature-highlight-hello-world-with-custom-bgworkers/
