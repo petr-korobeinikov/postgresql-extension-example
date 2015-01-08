@@ -1,7 +1,7 @@
 # Regression output
-/regression.diffs
-/regression.out
-/results/
+regression.diffs
+regression.out
+results/
 
 # Compiler output
 *.o
