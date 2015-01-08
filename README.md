@@ -28,6 +28,25 @@ http://www.postgresql.org/docs/devel/static/extend-pgxs.html
 
 http://www.postgresql.org/docs/devel/static/extend-extensions.html
 
+## hello_ext &mdash; пример расширения
+
+    make
+    make install
+    make installcheck                       # прогон тестов
+    psql -c 'create extension hello_ext'
+    psql -c 'select hello_world()'
+
+## hello_bgw &mdash; пример background worker'а
+
+    make
+    make install
+
+    $EDITOR path/to/postgresql.conf
+    --- shared_preload_libraries = ''
+    +++ shared_preload_libraries = 'hello_bgw'
+
+    pg_ctl -D path/to/datadir restart
+
 ## Другие примеры
 
 * https://bitbucket.org/adunstan/blackhole_fdw
