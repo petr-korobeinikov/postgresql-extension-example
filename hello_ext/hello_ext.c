@@ -6,6 +6,9 @@
  * Copyright (c) 2014-2015: Your Name Here <youaresocool@domain.tld>
  * Copyright (c) 2014-2015, PostgreSQL Global Development Group
  *
+ * IDENTIFICATION
+ *		hello_ext/hello_ext.c
+ *
  *-------------------------------------------------------------------------
  */
 
