@@ -47,6 +47,10 @@ http://www.postgresql.org/docs/devel/static/extend-extensions.html
 
     pg_ctl -D path/to/datadir restart
 
+## hello_fdw &mdash; пример foreign data wrapper'а
+
+    todo
+
 ## Другие примеры
 
 * https://bitbucket.org/adunstan/blackhole_fdw
