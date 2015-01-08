@@ -30,22 +30,22 @@ static volatile sig_atomic_t got_sighup = false;
 static volatile sig_atomic_t got_sigterm = false;
 
 static void
-hello_bgw_sigterm(SIGNAL_ARGS)
-{
-	got_sigterm = true;
-}
-
-static void
 hello_bgw_sighup(SIGNAL_ARGS)
 {
 	got_sighup = true;
 }
 
 static void
+hello_bgw_sigterm(SIGNAL_ARGS)
+{
+	got_sigterm = true;
+}
+
+static void
 hello_bgw_main(Datum main_arg)
 {
-	pqsignal(SIGTERM, hello_bgw_sigterm);
 	pqsignal(SIGHUP, hello_bgw_sighup);
+	pqsignal(SIGTERM, hello_bgw_sigterm);
 
 	BackgroundWorkerUnblockSignals();
 }
