@@ -24,6 +24,7 @@
 #include "storage/shmem.h"
 
 #include "fmgr.h"
+#include "utils/guc.h"
 
 PG_MODULE_MAGIC;
 
@@ -35,13 +36,25 @@ static volatile sig_atomic_t got_sigterm = false;
 static void
 hello_bgw_sighup(SIGNAL_ARGS)
 {
+	int			save_errno = errno;
+
 	got_sighup = true;
+	if (MyProc)
+		SetLatch(&MyProc->procLatch);
+
+	errno = save_errno;
 }
 
 static void
 hello_bgw_sigterm(SIGNAL_ARGS)
 {
+	int			save_errno = errno;
+
 	got_sigterm = true;
+	if (MyProc)
+		SetLatch(&MyProc->procLatch);
+
+	errno = save_errno;
 }
 
 static void
@@ -51,6 +64,41 @@ hello_bgw_main(Datum main_arg)
 	pqsignal(SIGTERM, hello_bgw_sigterm);
 
 	BackgroundWorkerUnblockSignals();
+
+	while (true)
+	{
+		int rc;
+
+		rc = WaitLatch(&MyProc->procLatch,
+					   WL_LATCH_SET | WL_TIMEOUT | WL_POSTMASTER_DEATH,
+					   2000L);
+		ResetLatch(&MyProc->procLatch);
+
+		if (rc & WL_POSTMASTER_DEATH)
+			proc_exit(1);
+
+
+		if (got_sighup)
+		{
+			elog(LOG, "Got sighup; reload config.");
+
+			got_sighup = false;
+			ProcessConfigFile(PGC_SIGHUP);
+		}
+
+
+		if (got_sigterm)
+		{
+			elog(LOG, "Got sigterm; exiting cleanly.");
+
+			proc_exit(0);
+		}
+
+
+		elog(LOG, "Hello, Background Worker!");
+	}
+
+	proc_exit(0);
 }
 
 void
