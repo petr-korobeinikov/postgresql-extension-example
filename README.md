@@ -51,6 +51,8 @@ http://www.postgresql.org/docs/devel/static/extend-extensions.html
 
     todo
 
+http://www.postgresql.org/docs/devel/static/fdwhandler.html
+
 ## Другие примеры
 
 * https://bitbucket.org/adunstan/blackhole_fdw
