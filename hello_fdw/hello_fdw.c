@@ -3,7 +3,6 @@
  * hello_fdw.c
  *     example foreign data wrapper for PostgreSQL
  *
- * Copyright (c) 2015: Your Name Here <youaresocool@domain.tld>
  * Copyright (c) 2015, PostgreSQL Global Development Group
  *
  * IDENTIFICATION
