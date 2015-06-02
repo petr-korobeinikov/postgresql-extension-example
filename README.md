@@ -53,6 +53,10 @@ http://www.postgresql.org/docs/devel/static/extend-extensions.html
 
 http://www.postgresql.org/docs/devel/static/fdwhandler.html
 
+## hello_spi &mdash; пример server programming interface'а
+
+    todo
+
 ## Другие примеры
 
 * https://bitbucket.org/adunstan/blackhole_fdw
