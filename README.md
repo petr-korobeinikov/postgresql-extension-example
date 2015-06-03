@@ -57,6 +57,10 @@ http://www.postgresql.org/docs/devel/static/fdwhandler.html
 
     todo
 
+## hello_plh &mdash; пример procedural language handler'а
+
+    todo
+
 ## Другие примеры
 
 * https://bitbucket.org/adunstan/blackhole_fdw
